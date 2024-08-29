@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidemen Mystery Ranking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="https://pbs.twimg.com/profile_images/1448335404797767680/S0kTjXl2_400x400.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-black text-white">
+<a href = "https://www.sidemen.com/" target="_blank">
+  <div class="fixed top-0 left-0 w-16 h-16 p-2 logo-div">
+      <img class="border border-white" src="https://render.fineartamerica.com/images/rendered/default/print/8/8/break/images/artworkimages/medium/3/sdmn-geun-perro.jpg" alt="sidemen_logo_dark"/>
+  </div>
+</a>
+
+<main class="p-4">
+    <div id="question-container" class="flex items-center justify-center font-mono font-bold text-2xl text-rose-600 mb-4"></div>
+    <div id="sidemen-container" class="flex items-center justify-center p-2 mb-4">
+        <img id="sidemen-img" class="flex rounded-b-full w-20 h-20 border-2 border-cyan-500" src="" alt="sidemen_img"/>
+    </div>
+    <p id="sidemen-name" class="flex items-center justify-center text-xl font-mono font-extrabold text-cyan-500 p-2"></p>
+    <div id="ranking-buttons" class="flex space-x-10 items-center justify-center p-4"></div>
+</main>
+
+<div id="ranking-container" class="p-4 space-y-3">
+    <!-- Rank1 -->
+    <div id="rank-1" class="p-4 flex items-center justify-between space-x-5 border-2 border-white">
+        <img class="flex rounded-b-full w-15 h-12" src="" alt=""/>
+        <p class="flex font-mono font-bold items-center justify-center"></p>
+        <p class="flex w-12 h-12 items-center justify-center font-bold"></p>
+    </div>
+    <!-- Rank2 -->
+    <div id="rank-2" class="p-4 flex items-center justify-between space-x-5 border-2 border-white">
+        <img class="flex rounded-b-full w-15 h-12" src="" alt=""/>
+        <p class="flex font-mono font-bold items-center justify-center"></p>
+        <p class="flex w-12 h-12 items-center justify-center font-bold"></p>
+    </div>
+    <!-- Rank3 -->
+    <div id="rank-3" class="p-4 flex items-center justify-between space-x-5 border-2 border-white">
+        <img class="flex rounded-b-full w-15 h-12" src="" alt=""/>
+        <p class="flex font-mono font-bold items-center justify-center"></p>
+        <p class="flex w-12 h-12 items-center justify-center font-bold"></p>
+    </div>
+    <!-- Rank4 -->
+    <div id="rank-4" class="p-4 flex items-center justify-between space-x-5 border-2 border-white">
+        <img class="flex rounded-b-full w-15 h-12" src="" alt=""/>
+        <p class="flex font-mono font-bold items-center justify-center"></p>
+        <p class="flex w-12 h-12 items-center justify-center font-bold"></p>
+    </div>
+</div>
+
+<footer class="p-4 flex items-center justify-center space-x-16">
+    <a href="https://www.reddit.com/r/Sidemen/" target="_blank">
+        <i class="bi bi-reddit text-2xl text-orange-600"></i>
+    </a>
+
+    <a href="https://www.youtube.com/@Sidemen/videos" target="_blank">
+        <i class="bi bi-youtube text-3xl text-red-600"></i>
+    </a>
+
+    <a href="https://www.instagram.com/sidemen/" target="_blank">
+        <i class="bi bi-instagram text-2xl text-pink-500"></i>
+    </a>
+
+    <a href="https://www.facebook.com/sidemenofficial" target="_blank">
+        <i class="bi bi-facebook text-2xl text-blue-700"></i>
+    </a>
+
+    <a href="https://x.com/sidemen" target="_blank">
+        <i class="bi bi-twitter-x text-xl text-blue-400"></i>
+    </a>
+</footer>
+
+<div id="copyright-section" class="p-4 flex items-center justify-center border-t border-2 space-x-1">
+    <i class="bi bi-c-circle"></i>
+    <p class="font-mono font-bold">Copyright 2024 SaiKaushik; All rights are reserved.</p>
+</div>
+
+<div class="fixed bottom-0 left-0 flex p-2">
+    <!-- Dark Mode Toggle Button -->
+    <button id="darkModeToggle" class="flex border-2 items-center justify-center w-10 h-10 rounded-xl bg-black text-white">
+        <i id="darkModeIcon" class="bi bi-sun-fill"></i>
+    </button>
+</div>
+
+<div class="fixed bottom-0 right-0 flex p-2">
+  <!-- Restart Button -->
+    <button id="restartGameButton" class="flex border-2 items-center justify-center w-10 h-10 rounded-xl bg-black text-white">
+        <i class="bi bi-arrow-clockwise"></i>
+    </button>
+</div>
+
+
+<!-- Game Over Modal -->
+<div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <!-- Modal Content -->
+    <div class="bg-white p-6 rounded-lg shadow-lg relative max-w-sm w-full text-center">
+        <!-- Close Button -->
+        <button id="closeModalButton" class="absolute top-2 right-2 w-8 h-8 border border-black rounded-full flex items-center justify-center">
+            <i class="bi bi-x-lg text-black"></i>
+        </button>
+
+        <!-- Game Over message -->
+        <div class="mt-4">
+            <p class="font-mono font-extrabold text-2xl text-black">GAME OVER</p>
+        </div>
+
+        <!-- Restart button -->
+        <div class="mt-6">
+            <button id="restartButton" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center w-full">
+                <i class="bi bi-arrow-clockwise mr-2"></i> PLAY AGAIN
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = document.getElementById('darkModeIcon');
+    const body = document.body;
+    const borderElements = document.querySelectorAll('.border-2');
+    
+    function updateLogo() {
+      const isDarkMode = body.classList.contains('bg-black');
+      const logoDiv = document.querySelector('.logo-div');
+  
+      if (isDarkMode) {
+          logoDiv.innerHTML = '<img class="border border-white" src="https://render.fineartamerica.com/images/rendered/default/print/8/8/break/images/artworkimages/medium/3/sdmn-geun-perro.jpg" alt="sidemen_logo_dark"/>';
+      } else {
+          logoDiv.innerHTML = '<img class="border border-black" src="https://render.fineartamerica.com/images/rendered/default/print/8/8/break/images/artworkimages/medium/3/ksi-geun-perro.jpg" alt="sidemen_logo_white"/>';
+      }
+  }
+
+    // Get reference to the restart button
+  const restartGameButton = document.getElementById('restartGameButton');
+  
+  function toggleDarkMode() {
+      const isDarkMode = body.classList.toggle('bg-black');
+      body.classList.toggle('text-white', isDarkMode);
+      body.classList.toggle('bg-gray-100', !isDarkMode);
+      body.classList.toggle('text-black', !isDarkMode);
+  
+      darkModeIcon.classList.toggle('bi-moon-fill', !isDarkMode);
+      darkModeIcon.classList.toggle('bi-sun-fill', isDarkMode);
+  
+      darkModeToggle.classList.toggle('bg-white', !isDarkMode);
+      darkModeToggle.classList.toggle('bg-black', isDarkMode);
+      darkModeToggle.classList.toggle('text-black', !isDarkMode);
+      darkModeToggle.classList.toggle('text-white', isDarkMode);
+  
+      // Update Restart Button Style
+      restartGameButton.classList.toggle('bg-white', !isDarkMode);
+      restartGameButton.classList.toggle('bg-black', isDarkMode);
+      restartGameButton.classList.toggle('text-black', !isDarkMode);
+      restartGameButton.classList.toggle('text-white', isDarkMode);
+  
+      borderElements.forEach(el => {
+          el.style.borderColor = isDarkMode ? '#ffffff' : '#000000';
+          updateLogo();
+      });
+  
+      // Toggle classes for the copyright section
+      const copyrightSection = document.getElementById('copyright-section');
+      copyrightSection.classList.toggle('text-black', !isDarkMode);
+      copyrightSection.classList.toggle('text-white', isDarkMode);
+  }
+  
+  function initializeTheme() {
+      const isDarkMode = body.classList.contains('bg-black');
+  
+      darkModeIcon.classList.toggle('bi-moon-fill', !isDarkMode);
+      darkModeIcon.classList.toggle('bi-sun-fill', isDarkMode);
+  
+      darkModeToggle.classList.toggle('bg-white', !isDarkMode);
+      darkModeToggle.classList.toggle('bg-black', isDarkMode);
+      darkModeToggle.classList.toggle('text-black', !isDarkMode);
+      darkModeToggle.classList.toggle('text-white', isDarkMode);
+  
+      // Initialize Restart Button Style
+      restartGameButton.classList.toggle('bg-white', !isDarkMode);
+      restartGameButton.classList.toggle('bg-black', isDarkMode);
+      restartGameButton.classList.toggle('text-black', !isDarkMode);
+      restartGameButton.classList.toggle('text-white', isDarkMode);
+  
+      borderElements.forEach(el => {
+          el.style.borderColor = isDarkMode ? '#ffffff' : '#000000';
+      });
+  
+      // Initialize the logo based on the current theme
+      updateLogo();
+  }
+  
+  // Attach event listeners to the buttons
+  darkModeToggle.addEventListener('click', toggleDarkMode);
+  restartGameButton.addEventListener('click', restartGame);
+  
+  
+
+    // Call initializeTheme on load
+    window.onload = function() {
+        initializeTheme();
+        startGame();
+        updateLogo();
+    };
+
+    // Existing script logic
+    var questions = [
+      "BLIND RANKING: FUNNIEST FIRST",
+      "BLIND RANKING: RICHEST FIRST",
+      "BLIND RANKING: YOUTUBER FIRST",
+      "BLIND RANKING: ATTRACTIVE FIRST"
+    ];
+
+    const sidemen = [
+        { name: "W2S", img: "https://preview.redd.it/cxle754hi8171.png?width=1200&format=png&auto=webp&s=a39e487da79c767bed685091389b029038e20494", subs: "16.3M", color: "cyan-500" },
+        { name: "ZERKAA", img: "https://preview.redd.it/wt61zj5gi8171.png?width=1200&format=png&auto=webp&s=583719d11ded69bf19f5f8c088cf58696ec9c3c9", subs: "4.71M", color: "lime-600" },
+        { name: "KSI", img: "https://preview.redd.it/qg9g4zchi8171.png?width=1200&format=png&auto=webp&s=703d6f1c121299cb7a61141f9cbf9ce5a83c8785", subs: "24.1M", color: "sky-400" },
+        { name: "VIKKSTAR123", img: "https://preview.redd.it/6a89p3sgi8171.png?width=1200&format=png&auto=webp&s=4bc862cac14756765ab36062ba90e9c2e5ef571c", subs: "7.6M", color: "rose-600" },
+        { name: "MINIMINTER", img: "https://preview.redd.it/fzxgyidgi8171.png?width=1200&format=png&auto=webp&s=6ed4a0f9f86c11f86c12902ebfedf2ee12884c2d", subs: "10.4M", color: "amber-300" },
+        { name: "TBJZL", img: "https://preview.redd.it/csg7udygi8171.png?width=1200&format=png&auto=webp&s=beb4bb6b61e4d0a61f1c02e04ad54cedada5c6f1", subs: "5.01M", color: "purple-700" },
+        { name: "BEHZINGA", img: "https://preview.redd.it/8yfuoozfi8171.png?width=1200&format=png&auto=webp&s=c27758c070db61858f7a9c6e6e35ceea4af08740", subs: "4.96M", color: "yellow-400" }
+    ];
+
+    let availableRanks = [1, 2, 3, 4];
+    let usedSidemen = [];
+
+    function getRandomQuestion() {
+        return questions[Math.floor(Math.random() * questions.length)];
+    }
+
+    function getRandomSidemen() {
+        let remainingSidemen = sidemen.filter(s => !usedSidemen.includes(s));
+        return remainingSidemen[Math.floor(Math.random() * remainingSidemen.length)];
+    }
+
+    function updateSidemenDisplay() {
+        if (availableRanks.length > 0) {
+            const randomSidemen = getRandomSidemen();
+            usedSidemen.push(randomSidemen);
+
+            // Set the Sidemen image source
+            const sidemenImg = document.getElementById('sidemen-img');
+            sidemenImg.src = randomSidemen.img;
+            sidemenImg.className = `flex rounded-b-full w-24 h-20 border-2 border-${randomSidemen.color}`;
+
+            // Set the Sidemen name and color
+            const sidemenName = document.getElementById('sidemen-name');
+            sidemenName.textContent = randomSidemen.name;
+            sidemenName.className = `flex items-center justify-center text-xl font-mono font-extrabold text-${randomSidemen.color} p-2`;
+
+            // Clear and add ranking buttons
+            const buttonContainer = document.getElementById('ranking-buttons');
+            buttonContainer.innerHTML = '';
+            availableRanks.forEach(rank => {
+                let button = document.createElement('button');
+                button.textContent = rank;
+                button.classList.add('font-bold', 'py-2', 'px-4', 'border-b-4', 'rounded-xl');
+
+                // Apply unique styles based on rank
+                switch (rank) {
+                    case 1:
+                        button.classList.add('bg-yellow-400', 'hover:bg-yellow-300', 'text-white', 'border-teal-700', 'hover:border-teal-500');
+                        break;
+                    case 2:
+                        button.classList.add('bg-slate-400', 'hover:bg-slate-300', 'text-white', 'border-teal-700', 'hover:border-teal-500');
+                        break;
+                    case 3:
+                        button.classList.add('bg-yellow-700', 'hover:bg-yellow-600', 'text-white', 'border-teal-700', 'hover:border-teal-500');
+                        break;
+                    case 4:
+                        button.classList.add('bg-emerald-500', 'hover:bg-emerald-400', 'text-white', 'border-blue-700', 'hover:border-blue-500');
+                        break;
+                }
+
+                button.addEventListener('click', () => rankSidemen(randomSidemen, rank));
+                buttonContainer.appendChild(button);
+            });
+        }
+    }
+
+    function rankSidemen(sidemen, rank) {
+      availableRanks = availableRanks.filter(r => r !== rank);
+  
+      let rankElement = document.getElementById(`rank-${rank}`);
+      const imgElement = rankElement.querySelector('img');
+      imgElement.src = sidemen.img;
+      imgElement.className = `flex rounded-b-full w-15 h-12 border-2 border-${sidemen.color}`;
+  
+      const nameElement = rankElement.querySelector('p:nth-child(2)');
+      nameElement.textContent = sidemen.name;
+      nameElement.className = `flex font-mono font-bold items-center justify-center text-${sidemen.color}`;
+  
+      const subsElement = rankElement.querySelector('p:nth-child(3)');
+      subsElement.textContent = sidemen.subs;
+      subsElement.className = `flex w-12 h-12 items-center justify-center font-bold text-${sidemen.color}`;
+  
+      if (availableRanks.length === 1) {
+          let remainingRank = availableRanks[0];
+          let lastSidemen = getRandomSidemen();
+          usedSidemen.push(lastSidemen);
+  
+          rankElement = document.getElementById(`rank-${remainingRank}`);
+          rankElement.querySelector('img').src = lastSidemen.img;
+          rankElement.querySelector('img').className = `flex rounded-b-full w-15 h-12 border-2 border-${lastSidemen.color}`;
+          rankElement.querySelector('p:nth-child(2)').textContent = lastSidemen.name;
+          rankElement.querySelector('p:nth-child(2)').className = `flex font-mono font-bold items-center justify-center text-${lastSidemen.color}`;
+          rankElement.querySelector('p:nth-child(3)').textContent = lastSidemen.subs;
+          rankElement.querySelector('p:nth-child(3)').className = `flex w-12 h-12 items-center justify-center font-bold text-${lastSidemen.color}`;
+  
+          availableRanks = [];
+          document.getElementById('ranking-buttons').innerHTML = '';
+  
+          document.getElementById('sidemen-img').src = lastSidemen.img;
+          document.getElementById('sidemen-name').textContent = lastSidemen.name;
+          document.getElementById('sidemen-name').className = `flex items-center justify-center text-xl font-mono font-extrabold text-${lastSidemen.color} p-2`;
+  
+          // Show game over modal
+          document.getElementById('gameOverModal').classList.remove('hidden');
+      } else {
+          updateSidemenDisplay();
+      }
+  }
+  
+  // Add event listeners for modal buttons
+  document.getElementById('closeModalButton').addEventListener('click', () => {
+      document.getElementById('gameOverModal').classList.add('hidden');
+  });
+  
+  document.getElementById('restartButton').addEventListener('click', () => {
+      document.getElementById('gameOverModal').classList.add('hidden');
+      restartGame();
+  });
+  
+  function restartGame() {
+      availableRanks = [1, 2, 3, 4];
+      usedSidemen = [];
+      document.querySelectorAll('#ranking-container > div').forEach(rankElement => {
+          rankElement.querySelector('img').src = '';
+          rankElement.querySelector('p:nth-child(2)').textContent = '';
+          rankElement.querySelector('p:nth-child(3)').textContent = '';
+      });
+      startGame();
+  }
+
+
+    function startGame() {
+        document.getElementById('question-container').textContent = getRandomQuestion();
+        updateSidemenDisplay();
+    }
+
+    window.onload = startGame;
+</script>
+</body>
+</html>
