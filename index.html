@@ -92,6 +92,60 @@
     </button>
 </div>
 
+<div id="gameInfoModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <!-- Modal Content -->
+    <div class="bg-white p-6 rounded-lg shadow-lg relative max-w-sm w-full text-center">
+        <!-- Close Button -->
+        <button id="closeInfoButton" class="absolute top-2 right-2 w-8 h-8 border border-black rounded-full flex items-center justify-center">
+            <i class="bi bi-x-lg text-black"></i>
+        </button>
+
+        <!-- How to Play -->
+        <div class="mt-4">
+            <p class="font-mono font-extrabold text-2xl text-black">How to Play</p>
+            <ul class="text-left mt-4 space-y-2 text-black">
+                <li><strong>1. Choose a Rank:</strong> Pick a rank for each Sidemen member based on the given criteria.</li>
+                <li><strong>2. Fill All Positions:</strong> Continue ranking until all positions are filled.</li>
+                <li><strong>3. See Your Results:</strong> Check out your final rankings at the end of the game.</li>
+                <li><strong>4. Share Your Picks:</strong> Share your results with friends on social media!</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Info Button -->
+<div class="fixed top-0 right-0 flex p-2">
+    <!-- GameInfo Button -->
+    <button id="GameInfoButton" class="flex border-2 items-center justify-center w-10 h-10 rounded-xl bg-black text-white">
+        <i class="bi bi-info-lg"></i>
+    </button>
+</div>
+
+
+
+<!-- Game Over Modal -->
+<div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <!-- Modal Content -->
+    <div class="bg-white p-6 rounded-lg shadow-lg relative max-w-sm w-full text-center">
+        <!-- Close Button -->
+        <button id="closeModalButton" class="absolute top-2 right-2 w-8 h-8 border border-black rounded-full flex items-center justify-center">
+            <i class="bi bi-x-lg text-black"></i>
+        </button>
+
+        <!-- Game Over message -->
+        <div class="mt-4">
+            <p class="font-mono font-extrabold text-2xl text-black">GAME OVER</p>
+        </div>
+
+        <!-- Restart button -->
+        <div class="mt-6">
+            <button id="restartButton" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center w-full">
+                <i class="bi bi-arrow-clockwise mr-2"></i> PLAY AGAIN
+            </button>
+        </div>
+    </div>
+</div>
+
 
 <!-- Game Over Modal -->
 <div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -155,6 +209,12 @@
       restartGameButton.classList.toggle('bg-black', isDarkMode);
       restartGameButton.classList.toggle('text-black', !isDarkMode);
       restartGameButton.classList.toggle('text-white', isDarkMode);
+      
+      GameInfoButton.classList.toggle('bg-white', !isDarkMode);
+      GameInfoButton.classList.toggle('bg-black', isDarkMode);
+      GameInfoButton.classList.toggle('text-black', !isDarkMode);
+      GameInfoButton.classList.toggle('text-white', isDarkMode);
+      
   
       borderElements.forEach(el => {
           el.style.borderColor = isDarkMode ? '#ffffff' : '#000000';
@@ -196,7 +256,26 @@
   darkModeToggle.addEventListener('click', toggleDarkMode);
   restartGameButton.addEventListener('click', restartGame);
   
-  
+    const gameInfoButton = document.getElementById('GameInfoButton');
+    const gameInfoModal = document.getElementById('gameInfoModal');
+    const closeInfoButton = document.getElementById('closeInfoButton');
+
+    // Show modal when info button is clicked
+    gameInfoButton.addEventListener('click', () => {
+        gameInfoModal.classList.remove('hidden');
+    });
+
+    // Close modal when close button is clicked
+    closeInfoButton.addEventListener('click', () => {
+        gameInfoModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside of it
+    gameInfoModal.addEventListener('click', (e) => {
+        if (e.target === gameInfoModal) {
+            gameInfoModal.classList.add('hidden');
+        }
+    });
 
     // Call initializeTheme on load
     window.onload = function() {
